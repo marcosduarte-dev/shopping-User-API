@@ -1,7 +1,5 @@
 package com.markpedev.shopping.userapi.controller;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.markpedev.shopping.userapi.dto.UserDTO;
 import com.markpedev.shopping.userapi.service.UserService;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
