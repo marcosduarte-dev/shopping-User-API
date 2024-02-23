@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.markpedev.shopping.userapi.config.UserRunnable;
+import com.markpedev.shopping.userapi.config.UserRunnableManager;
 import com.markpedev.shopping.userapi.dto.UserDTO;
 import com.markpedev.shopping.userapi.service.UserService;
 
@@ -57,7 +59,15 @@ public class UserController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public UserDTO add(@RequestBody @Valid UserDTO userDTO) {
-		return userService.save(userDTO);
+		UserDTO savedUser = userService.save(userDTO);
+		
+		UserRunnable userRunnable = UserRunnableManager.getUserRunnable();
+		
+		 if (userRunnable != null) {
+			 userRunnable.run();
+		 }
+		
+		return savedUser;
 	}
 	
 	@PatchMapping("/{id}")
